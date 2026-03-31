@@ -64,30 +64,58 @@ app.get('/idl', (req, res)=> {
 // 3. Readability: Async/await allows you to write asynchronous code that looks more like synchronous code, making it easier to understand and follow the flow of the program.
 
 
-app.post('/person', async (req, res) => {
-    try{
-        const data = req.body;
-        const newPerson = new person(data);
-        const savedPerson = await newPerson.save();
-        console.log("Person saved to database:", savedPerson);
-        res.status(200).json(savedPerson);
-    }
-    catch(error){
-        console.error("Error saving person to database:", error);
-        res.status(500).send("Error saving person to database");
-    }
-});
+// app.post('/person', async (req, res) => {
+//     try{
+//         const data = req.body;
+//         const newPerson = new person(data);
+//         const savedPerson = await newPerson.save();
+//         console.log("Person saved to database:", savedPerson);
+//         res.status(200).json(savedPerson);
+//     }
+//     catch(error){
+//         console.error("Error saving person to database:", error);
+//         res.status(500).send("Error saving person to database");
+//     }
+// });
 
-app.get('/person', async (req, res) => {
-    try {
-        const people = await person.find();
-        res.status(200).json(people);
-    }
-    catch (error) {
-        console.error("Error fetching people from database:", error);
-        res.status(500).send("Error fetching people from database");
-    }
-});
+// app.get('/person', async (req, res) => {
+//     try {
+//         const people = await person.find();
+//         res.status(200).json(people);
+//     }
+//     catch (error) {
+//         console.error("Error fetching people from database:", error);
+//         res.status(500).send("Error fetching people from database");
+//     }
+// });
+
+// app.get('/person/:worktype', async(req, res)=>{
+//     try {
+//         const worktype = req.params.worktype;
+//         if(worktype  == 'developer'|| worktype == 'designer' || worktype == 'manager'){
+
+//             const people = await person.find({ work: worktype });
+//             res.status(200).json(people);
+//         }
+//         else{
+//             res.status(400).send("Invalid work type. Please provide 'developer', 'designer', or 'manager'.");
+//         }
+//     }
+//     catch (error) {
+//         console.error("Error fetching people by work type from database:", error);
+//         res.status(500).send("Error fetching people by work type from database");
+//     }
+
+// });
+
+
+const personRouter = require('./PersonRouter'); 
+app.use('/person', personRouter); 
+
+// const menuRouter = require('./Menuitem_Server');
+// app.use('/menu', menuRouter);
+
+
 
 
 app.listen(3000)
