@@ -24,4 +24,69 @@ app.get('/idl', (req, res)=> {
     }
     res.send(order);
 })
+
+// app.post('/person', (req, res)=> {
+//     const data = req.body;
+    // const newPerson = new person();
+    // create new person document using the mongoose model and save it to the database
+    // newPerson.name = data.name;
+    // newPerson.age = data.age;
+    // newPerson.work = data.work;
+    // newPerson.mobile = data.mobile;
+    // newPerson.email = data.email;
+    // newPerson.address = data.address;
+    // newPerson.salary = data.salary;
+
+    // short hand  way  to asign the values to the new person document
+
+    // --> it❌ 1. Callback Hell (Major Problem)
+    // ❌ When multiple async operations
+//     save(() => {
+//    find(() => {
+//       update(() => {
+//          delete(() => {
+
+ 
+//     const newPerson = new person(data);
+//     newPerson.save((error, savedperson) => {
+//         if (error) {
+//             return res.status(500).send("Error saving person to database");
+//         }
+//         console.log("Person saved to database:", savedperson);
+//         res.status(200).json(savedperson);
+
+//     });
+// });
+
+// ------> Why async/await over callbacks?
+// 1. Callback Hell: When you have multiple asynchronous operations that depend on each other, you end up with nested callbacks, which can become difficult to read and maintain.
+// 2. Error Handling: With callbacks, you need to handle errors in each callback, which can lead to repetitive code and potential mistakes. With async/await, you can use try/catch blocks for cleaner error handling.
+// 3. Readability: Async/await allows you to write asynchronous code that looks more like synchronous code, making it easier to understand and follow the flow of the program.
+
+
+app.post('/person', async (req, res) => {
+    try{
+        const data = req.body;
+        const newPerson = new person(data);
+        const savedPerson = await newPerson.save();
+        console.log("Person saved to database:", savedPerson);
+        res.status(200).json(savedPerson);
+    }
+    catch(error){
+        console.error("Error saving person to database:", error);
+        res.status(500).send("Error saving person to database");
+    }
+});
+
+app.get('/person', async (req, res) => {
+    try {
+        const people = await person.find();
+        res.status(200).json(people);
+    }
+    catch (error) {
+        console.error("Error fetching people from database:", error);
+        res.status(500).send("Error fetching people from database");
+    }
+});
+
 app.listen(3000)
