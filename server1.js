@@ -109,13 +109,13 @@ app.get('/idl', (req, res)=> {
 // });
 
 
-const personRouter = require('./PersonRouter'); 
-app.use('/person', personRouter); 
+// const personRouter = require('./routes/PersonRouter');
+// app.use('/person', personRouter);
 
-// const menuRouter = require('./Menuitem_Server');
-// app.use('/menu', menuRouter);
-
-
+// // const menuRouter = require('./Menuitem_Server');
+// // app.use('/menu', menuRouter);
 
 
-app.listen(3000)
+
+
+// app.listen(3000)

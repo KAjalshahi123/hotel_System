@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Person = require('./module/person');
+const Person = require('../module/person');
 
-router.get('/person', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const people = await Person.find();
         res.status(200).json(people);
@@ -13,7 +13,7 @@ router.get('/person', async (req, res) => {
     }
 });
 
-router.get('/person/:worktype', async(req, res)=>{
+router.get('/:worktype', async(req, res)=>{
     try {
         const worktype = req.params.worktype;
         const validTypes = ['developer', 'designer', 'manager'];
@@ -32,7 +32,7 @@ router.get('/person/:worktype', async(req, res)=>{
     }
 });
 
-router.post('/person', async (req, res) => {
+router.post('/', async (req, res) => {
     try{
         const data = req.body;
         const newPerson = new Person(data);
