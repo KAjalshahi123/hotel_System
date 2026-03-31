@@ -45,4 +45,46 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.put('/:id' , async (req, res) =>{
+    try{
+        const id = req.params.id;
+        const data =  req.body;
+        const updatedPerson =  await Person.findByIdAndUpdate(id, data, {
+            new :true,
+            runValidators: true
+        })
+        if(!updatedPerson){
+            res.status(404).send("Person not found");
+
+        }
+        console.log("Person updated:", updatedPerson);
+        res.status(200).json(updatedPerson);
+
+    }
+    catch(error){
+        console.error("Error updating person:", error);
+        res.status(500).send("Error updating person");
+    }
+
+});
+
+router.delete('/:id', async (req, res) => { 
+    try { 
+        const id = req.params.id; 
+
+        const deletedPerson = await Person.findByIdAndDelete(id); 
+
+        if (!deletedPerson) { 
+            return res.status(404).send("Person not found"); 
+        } 
+
+        console.log("Person deleted:", deletedPerson); 
+        res.status(200).json(deletedPerson); 
+
+    } catch (error) { 
+        console.error("Error deleting person:", error); 
+        res.status(500).json({ error: error.message }); 
+    } 
+});
+
 module.exports = router;
