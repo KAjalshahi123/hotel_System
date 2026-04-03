@@ -27,8 +27,9 @@
 
 const mongoose = require('mongoose');
 
-const mongoUrl = "mongodb://127.0.0.1:27017/hotel";
-const mongoUrlA
+//const mongoUrl = "mongodb://127.0.0.1:27017/hotel";
+
+const mongoUrl = 'mongodb+srv://shahikajal274508_db_user:Qweryt54321@cluster0.ilbvi5z.mongodb.net/';
 
 mongoose.connect(mongoUrl);
 
@@ -47,5 +48,3 @@ db.on('disconnected', () => {
 });
 
 module.exports = db;
-
-// to use a github
