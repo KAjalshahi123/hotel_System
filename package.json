@@ -2,6 +2,14 @@
   "name": "node_tutorial",
   "version": "1.0.0",
   "description": "its node tutorial by kajal",
+  "homepage": "https://github.com/KAjalshahi123/Hotel_Managment_System#readme",
+  "bugs": {
+    "url": "https://github.com/KAjalshahi123/Hotel_Managment_System/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KAjalshahi123/Hotel_Managment_System.git"
+  },
   "license": "ISC",
   "author": "kajal shahi",
   "type": "commonjs",

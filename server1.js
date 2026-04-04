@@ -1,7 +1,9 @@
 const express =  require('express');
 const app =  express();
-const db = require('./db');
+const db = require('./db.js');
 const person = require('./module/person');
+const Menu = require('./module/Menu');
+
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
