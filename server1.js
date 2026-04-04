@@ -164,5 +164,10 @@ app.get('/:tasty', async (req, res) => {
  const personRouter = require('./routes/PersonRouter');
 app.use('/person', personRouter);
 
+
 app.listen(30000)
 
+app.listen(3031), () => {
+    console.log("Server running on port 3031");
+
+}

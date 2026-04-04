@@ -35,6 +35,6 @@ app.post('/menu', async (req, res) => {
 const routermen = require('./routes/menuRouter');
 app.use('/menu', routermen);
 
-app.listen(3000, () => {
-    console.log("Server running on port 3000");
+app.listen(3031, () => {
+    console.log("Server running on port 3031");
 });

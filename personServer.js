@@ -10,6 +10,6 @@ app.use(bodyParser.json());
 const personRouter = require('./routes/PersonRouter');
 app.use('/person', personRouter);
 
-app.listen(3000, () => {
-    console.log("Server running on port 3000");
-});
+app.listen(3031, () => {
+    console.log("Server running on port 3031");
+})
