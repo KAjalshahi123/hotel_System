@@ -26,25 +26,20 @@
 
 
 const mongoose = require('mongoose');
+const mongoUrl = "mongodb://127.0.0.1:27017/hotel";
 
-//const mongoUrl = "mongodb://127.0.0.1:27017/hotel";
-
-const mongoUrl = 'mongodb+srv://shahikajal274508_db_user:Qweryt54321@cluster0.ilbvi5z.mongodb.net/';
+//const mongoUrl = "mongodb+srv://shahikajal274508_db_user:Qweryt54321@cluster0.ilbvi5z.mongodb.net/hotel";
 
 mongoose.connect(mongoUrl);
 
 const db = mongoose.connection;
 
 db.on('connected', () => {
-    console.log('MongoDB connection successful');
+    console.log('MongoDB connected');
 });
 
 db.on('error', (err) => {
-    console.error('MongoDB connection error:', err);
-});
-
-db.on('disconnected', () => {
-    console.log('MongoDB disconnected');
+    console.error('MongoDB error:', err);
 });
 
 module.exports = db;
