@@ -115,7 +115,51 @@ app.get('/person/:worktype', async(req, res)=>{
 // const menuRouter = require('./Menuitem_Server');
 // app.use('/menu', menuRouter);
 
+// Menu  Server
 
+app.get('/menu', async (req, res) => {
+    try {
+        const menuItems = await Menu.find();
+        res.status(200).json(menuItems);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
+app.post('/menu', async (req, res) => {
+    try {
+        const data = req.body;
+
+        const newMenuItem = new Menu(data);
+        const savedMenuItem = await newMenuItem.save();
+
+        res.status(201).json(savedMenuItem);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+app.get('/:tasty', async (req, res) => {
+        try{
+            const tastetype =  req.params.tasty;
+            if(tastetype === 'spicy'|| tastetype === 'sweet' || tastetype === 'sour'){
+                const menuItem  = await Menu.find({taste: tastetype});
+                res.status(200).json(menuItem);
+            }
+            else{
+                res.status(400).json({ message: "Invalid taste type" });
+            }
+        }
+        catch(error){
+            console.error("Error fetching menu item ", error);
+            res.status(500).json({ message: error.message });
+        }
+    })
+
+ const routermen = require('./routes/menuRouter');
+ app.use('/menu', routermen);
+
+ const personRouter = require('./routes/PersonRouter');
+app.use('/person', personRouter);
 
 app.listen(3000)

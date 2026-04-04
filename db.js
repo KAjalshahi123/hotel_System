@@ -30,6 +30,7 @@ const mongoUrl = "mongodb://127.0.0.1:27017/hotel";
 
 //const mongoUrl = "mongodb+srv://shahikajal274508_db_user:Qweryt54321@cluster0.ilbvi5z.mongodb.net/hotel";
 
+
 mongoose.connect(mongoUrl);
 
 const db = mongoose.connection;
