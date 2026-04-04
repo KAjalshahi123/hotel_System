@@ -1,9 +1,7 @@
 #  Ignore node_modules directory
 
-
+node_modules/
 # Other entries...
 
-OS_FS.js
-green.txt
-server.js
+
 
