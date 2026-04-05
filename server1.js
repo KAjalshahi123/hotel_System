@@ -8,7 +8,14 @@ const Menu = require('./module/Menu');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-app.get('/', function(req, res){
+const logRequest = (req, res, next) => {
+    console.log(`${new Date().toLocaleString()} Request made to : ${req.url}`);
+    next();
+    }
+
+    app.use(logRequest);
+
+app.get('/',  function(req, res){
     res.send("Hello World how can i help  you ");
 
 })
@@ -66,6 +73,15 @@ app.get('/idl', (req, res)=> {
 // 3. Readability: Async/await allows you to write asynchronous code that looks more like synchronous code, making it easier to understand and follow the flow of the program.
 
 
+//   //Meddleware function
+
+//   const logRequest = (req, res, next) => {
+//     console.log(`${new Date().toLocaleString()} Request made to : ${req.url}`);
+//     next();
+//     }
+         
+
+
 app.post('/person', async (req, res) => {
     try{
         const data = req.body;
@@ -116,6 +132,8 @@ app.get('/person/:worktype', async(req, res)=>{
 
 // const menuRouter = require('./Menuitem_Server');
 // app.use('/menu', menuRouter);
+
+
 
 // Menu  Server
 
