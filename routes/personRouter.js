@@ -2,6 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Person = require('../module/person');
 
+// Middleware function to log incoming requests
+const logRequest = (req, res, next) => {
+    console.log(`[${new Date().toLocaleString()}] Request made to : ${req.url}`);
+    next();
+}
+
 router.get('/', async (req, res) => {
     try {
         const people = await Person.find();

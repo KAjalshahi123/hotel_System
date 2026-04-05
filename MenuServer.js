@@ -5,6 +5,13 @@ const Menu = require('./module/Menu');
 
 const app = express();
 
+// Middleware function logging incoming requests
+const logRequest = (req, res, next) => {
+    console.log(`${new Date().toLocaleString()} Request made to : ${req.url}`);
+    next();
+}
+app.use(logRequest);
+
 app.use('/menu', menuRouter);
 
 app.listen(3000, () => {
