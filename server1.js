@@ -179,7 +179,7 @@ app.get('/:tasty', async (req, res) => {
  const routermen = require('./routes/menuRouter');
  app.use('/menu', routermen);
 
- const personRouter = require('./routes/PersonRouter');
+ const personRouter = require('./routes/personRouter'); 
 app.use('/person', personRouter);
 
 
