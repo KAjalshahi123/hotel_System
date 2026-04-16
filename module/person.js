@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { use } = require('passport');
 
 const personSchema = new mongoose.Schema({
     name: String,
@@ -28,9 +29,24 @@ const personSchema = new mongoose.Schema({
     salary:{
         type: Number,
         required: true
+    },
+    username:{
+        type: String,
+        unique: true,
+        required: true
+    },
+    password:{
+        type: String,
+        required: true
     }
 
-});
+   
+
+    });
+  
+ 
+
+
 
 // create a model
 const Person = mongoose.model('Person', personSchema);
