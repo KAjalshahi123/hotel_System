@@ -7,6 +7,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const Person = require('./module/person');
 
 const personRouter = require('./routes/personRouter');
+const authRouter = require('./auth');
 
 app.use(express.json());
 
@@ -19,29 +20,17 @@ app.use((req, res, next) => {
 app.use(passport.initialize());
 
 // LOGIN AUTH
-passport.use(new LocalStrategy(
-    async (username, password, done) => {
-        try {
-            const user = await Person.findOne({ username });
 
-            if (!user) return done(null, false);
-
-            if (user.password !== password) return done(null, false);
-
-            return done(null, user);
-
-        } catch (err) {
-            return done(err);
-        }
-    }
-));
-
+const localAuthRouter = authRouter.authenticate('local', { session: false });
 // ROUTES
-app.use('/person', personRouter);
+app.use('/person',  personRouter);
 
-// LOGIN
+
+// app.get()
+
+// // LOGIN
 app.post('/login',
-    passport.authenticate('local', { session: false }),
+    authRouter.authenticate('local', { session: false }),
     (req, res) => {
         res.send("Login success");
     }

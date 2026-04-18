@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Person = require('../module/person');
 
+
 // GET all
 router.get('/', async (req, res) => {
     const data = await Person.find();

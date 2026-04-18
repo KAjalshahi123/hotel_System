@@ -15,7 +15,9 @@ const logRequest = (req, res, next) => {
 
     app.use(logRequest);
 
-app.get('/',  function(req, res){
+    const localAuthRouter = passport.authenticate('local', { session: false });
+
+app.get('/', localAuthRouter,  function(req, res){
     res.send("Hello World how can i help  you ");
 
 })
