@@ -15,9 +15,13 @@ const logRequest = (req, res, next) => {
 
     app.use(logRequest);
 
+
     const localAuthRouter = passport.authenticate('local', { session: false });
 
 app.get('/', localAuthRouter,  function(req, res){
+
+app.get('/',  function(req, res){
+
     res.send("Hello World how can i help  you ");
 
 })
@@ -185,9 +189,14 @@ app.get('/:tasty', async (req, res) => {
 app.use('/person', personRouter);
 
 
+
+app.listen(3031)
+
+
 app.listen(30000)
 
-app.listen(3031), () => {
+app.listen(3031), () =>{
     console.log("Server running on port 3031");
-
 }
+
+
